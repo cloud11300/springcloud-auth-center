@@ -40,7 +40,8 @@ post
 http://localhost:9001/auth/oauth/token?grant_type=client_credentials&client_id=test&client_secret=123456
 
 
-
+//token非对称加密
+keytool -genkeypair -alias mytest -keyalg RSA -keypass mypass -keystore keystore.jks -storepass mypass
 
 
 
