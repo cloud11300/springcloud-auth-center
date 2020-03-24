@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheryev.crm.auth.mapper.BaseSystemHandleMapper">
+  <resultMap id="BaseSystemMap" type="com.cheryev.crm.auth.pojo.BaseSystemVO">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="SYSTEM_NAME" jdbcType="VARCHAR" property="systemName" />
+    <result column="brand_id" jdbcType="VARCHAR" property="brandId" />
+    <result column="PROJECT_NAME" jdbcType="VARCHAR" property="projectName" />
+    <result column="ACTIVE" jdbcType="INTEGER" property="active" />
+    <result column="SORT" jdbcType="INTEGER" property="sort" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_system">
+    ID, SYSTEM_NAME, brand_id, PROJECT_NAME, ACTIVE, SORT, CREATE_DATE, UPDATE_DATE
+  </sql>
+  <select id="selectSystemByUserId" parameterType="java.lang.Integer" resultMap="BaseSystemMap">
+    select
+    <include refid="Base_Column_system" />
+    from base_system
+    where ID in (
+      select system_id from base_user_system where user_id = #{userId,jdbcType=INTEGER}
+    )
+  </select>
+
+
+</mapper>

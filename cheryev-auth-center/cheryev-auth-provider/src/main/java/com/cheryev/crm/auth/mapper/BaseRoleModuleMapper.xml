@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheryev.crm.auth.mapper.BaseRoleModuleMapper">
+  <resultMap id="BaseResultMap" type="com.cheryev.crm.auth.model.BaseRoleModule">
+    <id column="role_priv_id" jdbcType="INTEGER" property="rolePrivId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="module_id" jdbcType="INTEGER" property="moduleId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_priv_id, role_id, module_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_role_module
+    where role_priv_id = #{rolePrivId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from base_role_module
+    where role_priv_id = #{rolePrivId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cheryev.crm.auth.model.BaseRoleModule">
+    insert into base_role_module (role_priv_id, role_id, module_id
+      )
+    values (#{rolePrivId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{moduleId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cheryev.crm.auth.model.BaseRoleModule">
+    insert into base_role_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rolePrivId != null">
+        role_priv_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="moduleId != null">
+        module_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rolePrivId != null">
+        #{rolePrivId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cheryev.crm.auth.model.BaseRoleModule">
+    update base_role_module
+    <set>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleId != null">
+        module_id = #{moduleId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where role_priv_id = #{rolePrivId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cheryev.crm.auth.model.BaseRoleModule">
+    update base_role_module
+    set role_id = #{roleId,jdbcType=INTEGER},
+      module_id = #{moduleId,jdbcType=INTEGER}
+    where role_priv_id = #{rolePrivId,jdbcType=INTEGER}
+  </update>
+</mapper>

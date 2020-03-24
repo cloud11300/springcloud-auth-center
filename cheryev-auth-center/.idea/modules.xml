@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cheryev-auth-api/cheryev-auth-api.iml" filepath="$PROJECT_DIR$/cheryev-auth-api/cheryev-auth-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cheryev-auth-center.iml" filepath="$PROJECT_DIR$/cheryev-auth-center.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cheryev-auth-provider/cheryev-auth-provider.iml" filepath="$PROJECT_DIR$/cheryev-auth-provider/cheryev-auth-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cheryev-auth-starter/cheryev-auth-starter.iml" filepath="$PROJECT_DIR$/cheryev-auth-starter/cheryev-auth-starter.iml" />
+    </modules>
+  </component>
+</project>

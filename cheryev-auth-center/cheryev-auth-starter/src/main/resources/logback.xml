@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration  scan="true" scanPeriod="60 seconds" debug="false">
+    <contextName>logback</contextName>
+    <property name="log.path" value="/ap/cheryev/logs" />
+    <!--输出到控制台-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--输出到文件-->
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 每天归档 -->
+            <fileNamePattern>${log.path}/cheryev-auth-service-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxFileSize>200MB</maxFileSize>
+            <!--7天的日志周期-->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <!--<pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] %c{40} %line --%mdc{client} [%X{TRACE_LOG_ID}] %msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="console" />
+        <appender-ref ref="file" />
+    </root>
+
+</configuration>

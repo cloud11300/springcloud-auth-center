@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheryev.crm.auth.mapper.BaseUserMapper">
+  <resultMap id="BaseResultMap" type="com.cheryev.crm.auth.model.BaseUser">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="pass_word" jdbcType="VARCHAR" property="passWord" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="empno" jdbcType="VARCHAR" property="empno" />
+    <result column="depart" jdbcType="VARCHAR" property="depart" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="is_across_brand" jdbcType="VARCHAR" property="isAcrossBrand" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="user_source" jdbcType="INTEGER" property="userSource" />
+    <result column="is_monitor" jdbcType="TINYINT" property="isMonitor" />
+    <result column="ccc_account" jdbcType="TINYINT" property="cccAccount" />
+    <result column="is_web_chat" jdbcType="INTEGER" property="isWebChat" />
+    <result column="is_create" jdbcType="TINYINT" property="isCreate" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="mod_pwd_time" jdbcType="TIMESTAMP" property="modPwdTime" />
+    <result column="head_img" jdbcType="VARCHAR" property="headImg" />
+    <result column="bg" jdbcType="VARCHAR" property="bg" />
+    <result column="last_signin_time" jdbcType="TIMESTAMP" property="lastSigninTime" />
+    <result column="signin_num" jdbcType="INTEGER" property="signinNum" />
+    <result column="continu_signin" jdbcType="INTEGER" property="continuSignin" />
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="modify_pwd_apply_time" jdbcType="TIMESTAMP" property="modifyPwdApplyTime" />
+    <result column="device_type" jdbcType="VARCHAR" property="deviceType" />
+    <result column="device_token" jdbcType="VARCHAR" property="deviceToken" />
+    <result column="dealer_id" jdbcType="VARCHAR" property="dealerId" />
+    <result column="access_pre_time" jdbcType="TIMESTAMP" property="accessPreTime" />
+    <result column="access_suf_time" jdbcType="TIMESTAMP" property="accessSufTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="sso_user_cert" jdbcType="VARCHAR" property="ssoUserCert" />
+    <result column="wx_user_id" jdbcType="VARCHAR" property="wxUserId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, pass_word, user_name, nick_name, empno, depart, mobile, email, is_across_brand, 
+    status, salt, user_source, is_monitor, ccc_account, is_web_chat, is_create, last_login_time, 
+    mod_pwd_time, head_img, bg, last_signin_time, signin_num, continu_signin, uuid, modify_pwd_apply_time, 
+    device_type, device_token, dealer_id, access_pre_time, access_suf_time, create_time, 
+    create_user, update_time, update_user, user_type, sso_user_cert, wx_user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from base_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cheryev.crm.auth.model.BaseUser">
+    insert into base_user (user_id, pass_word, user_name, 
+      nick_name, empno, depart, 
+      mobile, email, is_across_brand, 
+      status, salt, user_source, 
+      is_monitor, ccc_account, is_web_chat, 
+      is_create, last_login_time, mod_pwd_time, 
+      head_img, bg, last_signin_time, 
+      signin_num, continu_signin, uuid, 
+      modify_pwd_apply_time, device_type, device_token, 
+      dealer_id, access_pre_time, access_suf_time, 
+      create_time, create_user, update_time, 
+      update_user, user_type, sso_user_cert, 
+      wx_user_id)
+    values (#{userId,jdbcType=INTEGER}, #{passWord,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{nickName,jdbcType=VARCHAR}, #{empno,jdbcType=VARCHAR}, #{depart,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isAcrossBrand,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{salt,jdbcType=VARCHAR}, #{userSource,jdbcType=INTEGER}, 
+      #{isMonitor,jdbcType=TINYINT}, #{cccAccount,jdbcType=TINYINT}, #{isWebChat,jdbcType=INTEGER}, 
+      #{isCreate,jdbcType=TINYINT}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{modPwdTime,jdbcType=TIMESTAMP}, 
+      #{headImg,jdbcType=VARCHAR}, #{bg,jdbcType=VARCHAR}, #{lastSigninTime,jdbcType=TIMESTAMP}, 
+      #{signinNum,jdbcType=INTEGER}, #{continuSignin,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, 
+      #{modifyPwdApplyTime,jdbcType=TIMESTAMP}, #{deviceType,jdbcType=VARCHAR}, #{deviceToken,jdbcType=VARCHAR}, 
+      #{dealerId,jdbcType=VARCHAR}, #{accessPreTime,jdbcType=TIMESTAMP}, #{accessSufTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER}, #{ssoUserCert,jdbcType=VARCHAR}, 
+      #{wxUserId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cheryev.crm.auth.model.BaseUser">
+    insert into base_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="passWord != null">
+        pass_word,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="empno != null">
+        empno,
+      </if>
+      <if test="depart != null">
+        depart,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="isAcrossBrand != null">
+        is_across_brand,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="userSource != null">
+        user_source,
+      </if>
+      <if test="isMonitor != null">
+        is_monitor,
+      </if>
+      <if test="cccAccount != null">
+        ccc_account,
+      </if>
+      <if test="isWebChat != null">
+        is_web_chat,
+      </if>
+      <if test="isCreate != null">
+        is_create,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="modPwdTime != null">
+        mod_pwd_time,
+      </if>
+      <if test="headImg != null">
+        head_img,
+      </if>
+      <if test="bg != null">
+        bg,
+      </if>
+      <if test="lastSigninTime != null">
+        last_signin_time,
+      </if>
+      <if test="signinNum != null">
+        signin_num,
+      </if>
+      <if test="continuSignin != null">
+        continu_signin,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="modifyPwdApplyTime != null">
+        modify_pwd_apply_time,
+      </if>
+      <if test="deviceType != null">
+        device_type,
+      </if>
+      <if test="deviceToken != null">
+        device_token,
+      </if>
+      <if test="dealerId != null">
+        dealer_id,
+      </if>
+      <if test="accessPreTime != null">
+        access_pre_time,
+      </if>
+      <if test="accessSufTime != null">
+        access_suf_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="ssoUserCert != null">
+        sso_user_cert,
+      </if>
+      <if test="wxUserId != null">
+        wx_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="passWord != null">
+        #{passWord,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="empno != null">
+        #{empno,jdbcType=VARCHAR},
+      </if>
+      <if test="depart != null">
+        #{depart,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isAcrossBrand != null">
+        #{isAcrossBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="userSource != null">
+        #{userSource,jdbcType=INTEGER},
+      </if>
+      <if test="isMonitor != null">
+        #{isMonitor,jdbcType=TINYINT},
+      </if>
+      <if test="cccAccount != null">
+        #{cccAccount,jdbcType=TINYINT},
+      </if>
+      <if test="isWebChat != null">
+        #{isWebChat,jdbcType=INTEGER},
+      </if>
+      <if test="isCreate != null">
+        #{isCreate,jdbcType=TINYINT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modPwdTime != null">
+        #{modPwdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="headImg != null">
+        #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="bg != null">
+        #{bg,jdbcType=VARCHAR},
+      </if>
+      <if test="lastSigninTime != null">
+        #{lastSigninTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signinNum != null">
+        #{signinNum,jdbcType=INTEGER},
+      </if>
+      <if test="continuSignin != null">
+        #{continuSignin,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyPwdApplyTime != null">
+        #{modifyPwdApplyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deviceType != null">
+        #{deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceToken != null">
+        #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="dealerId != null">
+        #{dealerId,jdbcType=VARCHAR},
+      </if>
+      <if test="accessPreTime != null">
+        #{accessPreTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accessSufTime != null">
+        #{accessSufTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="ssoUserCert != null">
+        #{ssoUserCert,jdbcType=VARCHAR},
+      </if>
+      <if test="wxUserId != null">
+        #{wxUserId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cheryev.crm.auth.model.BaseUser">
+    update base_user
+    <set>
+      <if test="passWord != null">
+        pass_word = #{passWord,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="empno != null">
+        empno = #{empno,jdbcType=VARCHAR},
+      </if>
+      <if test="depart != null">
+        depart = #{depart,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isAcrossBrand != null">
+        is_across_brand = #{isAcrossBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="userSource != null">
+        user_source = #{userSource,jdbcType=INTEGER},
+      </if>
+      <if test="isMonitor != null">
+        is_monitor = #{isMonitor,jdbcType=TINYINT},
+      </if>
+      <if test="cccAccount != null">
+        ccc_account = #{cccAccount,jdbcType=TINYINT},
+      </if>
+      <if test="isWebChat != null">
+        is_web_chat = #{isWebChat,jdbcType=INTEGER},
+      </if>
+      <if test="isCreate != null">
+        is_create = #{isCreate,jdbcType=TINYINT},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modPwdTime != null">
+        mod_pwd_time = #{modPwdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="headImg != null">
+        head_img = #{headImg,jdbcType=VARCHAR},
+      </if>
+      <if test="bg != null">
+        bg = #{bg,jdbcType=VARCHAR},
+      </if>
+      <if test="lastSigninTime != null">
+        last_signin_time = #{lastSigninTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signinNum != null">
+        signin_num = #{signinNum,jdbcType=INTEGER},
+      </if>
+      <if test="continuSignin != null">
+        continu_signin = #{continuSignin,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyPwdApplyTime != null">
+        modify_pwd_apply_time = #{modifyPwdApplyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deviceType != null">
+        device_type = #{deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceToken != null">
+        device_token = #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="dealerId != null">
+        dealer_id = #{dealerId,jdbcType=VARCHAR},
+      </if>
+      <if test="accessPreTime != null">
+        access_pre_time = #{accessPreTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accessSufTime != null">
+        access_suf_time = #{accessSufTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="ssoUserCert != null">
+        sso_user_cert = #{ssoUserCert,jdbcType=VARCHAR},
+      </if>
+      <if test="wxUserId != null">
+        wx_user_id = #{wxUserId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cheryev.crm.auth.model.BaseUser">
+    update base_user
+    set pass_word = #{passWord,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      empno = #{empno,jdbcType=VARCHAR},
+      depart = #{depart,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      is_across_brand = #{isAcrossBrand,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      salt = #{salt,jdbcType=VARCHAR},
+      user_source = #{userSource,jdbcType=INTEGER},
+      is_monitor = #{isMonitor,jdbcType=TINYINT},
+      ccc_account = #{cccAccount,jdbcType=TINYINT},
+      is_web_chat = #{isWebChat,jdbcType=INTEGER},
+      is_create = #{isCreate,jdbcType=TINYINT},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      mod_pwd_time = #{modPwdTime,jdbcType=TIMESTAMP},
+      head_img = #{headImg,jdbcType=VARCHAR},
+      bg = #{bg,jdbcType=VARCHAR},
+      last_signin_time = #{lastSigninTime,jdbcType=TIMESTAMP},
+      signin_num = #{signinNum,jdbcType=INTEGER},
+      continu_signin = #{continuSignin,jdbcType=INTEGER},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      modify_pwd_apply_time = #{modifyPwdApplyTime,jdbcType=TIMESTAMP},
+      device_type = #{deviceType,jdbcType=VARCHAR},
+      device_token = #{deviceToken,jdbcType=VARCHAR},
+      dealer_id = #{dealerId,jdbcType=VARCHAR},
+      access_pre_time = #{accessPreTime,jdbcType=TIMESTAMP},
+      access_suf_time = #{accessSufTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=INTEGER},
+      sso_user_cert = #{ssoUserCert,jdbcType=VARCHAR},
+      wx_user_id = #{wxUserId,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

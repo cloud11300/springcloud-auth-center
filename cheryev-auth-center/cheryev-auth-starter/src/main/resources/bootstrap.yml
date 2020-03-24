@@ -1,0 +1,29 @@
+server:
+  port: 9001
+  servlet:
+    context-path: /auth
+spring:
+  application:
+    name: cheryev-auth-service
+  freemarker:
+    request-context-attribute: request
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+#security:
+#  oauth2:
+#    client:
+#      access-token-uri: ${auth-server-url}/oauth/token
+#      user-authorization-uri: ${auth-server-url}/oauth/authorize
+#    resource:
+#      token-info-uri: ${auth-server-url}/oauth/check_token
+#auth-server-url: http://localhost:9001/auth
+
+auth-ignored: |
+  /login,/css/**,/js/**,/favicon.ico,/webjars/**,/images/**,/static/**,/hystrix.stream/**,
+  /info,/error,/health,/env,/metrics,/trace,/dump,/jolokia,/configprops,/activiti,/logfile,
+  /refresh,/flyway,/liquibase,/loggers,/druid/**,/oauth/deleteToken,/backReferer
+

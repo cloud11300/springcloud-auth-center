@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheryev.crm.auth.mapper.BaseModuleOperationMapper">
+  <resultMap id="BaseResultMap" type="com.cheryev.crm.auth.model.BaseModuleOperation">
+    <id column="oper_id" jdbcType="INTEGER" property="operId" />
+    <result column="oper_name" jdbcType="VARCHAR" property="operName" />
+    <result column="brand_id" jdbcType="VARCHAR" property="brandId" />
+    <result column="oper_desc" jdbcType="VARCHAR" property="operDesc" />
+    <result column="oper_menu" jdbcType="INTEGER" property="operMenu" />
+    <result column="oper_code" jdbcType="VARCHAR" property="operCode" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="oper_group_code" jdbcType="VARCHAR" property="operGroupCode" />
+    <result column="oper_group_name" jdbcType="VARCHAR" property="operGroupName" />
+    <result column="parent_group_code" jdbcType="VARCHAR" property="parentGroupCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    oper_id, oper_name, brand_id, oper_desc, oper_menu, oper_code, status, oper_group_code, 
+    oper_group_name, parent_group_code
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_module_operation
+    where oper_id = #{operId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from base_module_operation
+    where oper_id = #{operId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cheryev.crm.auth.model.BaseModuleOperation">
+    insert into base_module_operation (oper_id, oper_name, brand_id, 
+      oper_desc, oper_menu, oper_code, 
+      status, oper_group_code, oper_group_name, 
+      parent_group_code)
+    values (#{operId,jdbcType=INTEGER}, #{operName,jdbcType=VARCHAR}, #{brandId,jdbcType=VARCHAR}, 
+      #{operDesc,jdbcType=VARCHAR}, #{operMenu,jdbcType=INTEGER}, #{operCode,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{operGroupCode,jdbcType=VARCHAR}, #{operGroupName,jdbcType=VARCHAR}, 
+      #{parentGroupCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cheryev.crm.auth.model.BaseModuleOperation">
+    insert into base_module_operation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="operId != null">
+        oper_id,
+      </if>
+      <if test="operName != null">
+        oper_name,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="operDesc != null">
+        oper_desc,
+      </if>
+      <if test="operMenu != null">
+        oper_menu,
+      </if>
+      <if test="operCode != null">
+        oper_code,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="operGroupCode != null">
+        oper_group_code,
+      </if>
+      <if test="operGroupName != null">
+        oper_group_name,
+      </if>
+      <if test="parentGroupCode != null">
+        parent_group_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="operId != null">
+        #{operId,jdbcType=INTEGER},
+      </if>
+      <if test="operName != null">
+        #{operName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=VARCHAR},
+      </if>
+      <if test="operDesc != null">
+        #{operDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="operMenu != null">
+        #{operMenu,jdbcType=INTEGER},
+      </if>
+      <if test="operCode != null">
+        #{operCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="operGroupCode != null">
+        #{operGroupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operGroupName != null">
+        #{operGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentGroupCode != null">
+        #{parentGroupCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cheryev.crm.auth.model.BaseModuleOperation">
+    update base_module_operation
+    <set>
+      <if test="operName != null">
+        oper_name = #{operName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=VARCHAR},
+      </if>
+      <if test="operDesc != null">
+        oper_desc = #{operDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="operMenu != null">
+        oper_menu = #{operMenu,jdbcType=INTEGER},
+      </if>
+      <if test="operCode != null">
+        oper_code = #{operCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="operGroupCode != null">
+        oper_group_code = #{operGroupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operGroupName != null">
+        oper_group_name = #{operGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentGroupCode != null">
+        parent_group_code = #{parentGroupCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where oper_id = #{operId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cheryev.crm.auth.model.BaseModuleOperation">
+    update base_module_operation
+    set oper_name = #{operName,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=VARCHAR},
+      oper_desc = #{operDesc,jdbcType=VARCHAR},
+      oper_menu = #{operMenu,jdbcType=INTEGER},
+      oper_code = #{operCode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      oper_group_code = #{operGroupCode,jdbcType=VARCHAR},
+      oper_group_name = #{operGroupName,jdbcType=VARCHAR},
+      parent_group_code = #{parentGroupCode,jdbcType=VARCHAR}
+    where oper_id = #{operId,jdbcType=INTEGER}
+  </update>
+</mapper>

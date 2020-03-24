@@ -1,0 +1,37 @@
+#!/usr/bin/env groovy
+node('master') {
+	withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin:/opt/apache-maven-3.5.4/bin']) {
+		checkout scm
+
+		dateVersion = sh(script: "date \"+%Y%m%d%H%M%S\"", returnStdout: true).trim()
+		echo "dateVersion = ${dateVersion}"
+
+		stage('build'){
+			withMaven(jdk: 'JDK  8u181', maven: 'Maven 3.5.4'){
+				sh 'mvn -U clean package -Dmaven.test.skip=true'
+			}
+		}
+
+		stage('docker push') {
+		    sh "cp ./leadcenter-collect-service/target/leadcenter-collect-service-0.1-SNAPSHOT.jar ${APP_NAME}/docker/"
+            sh 'sudo docker build -t ${APP_NAME}/demo:1.0 .'
+            sh 'sudo docker tag titvax/demo:1.0 116.63.58.48:5000/titvax/demo:1.0'
+            sh 'sudo docker push 192.168.1.150:8001/titvax/demo:1.0'
+        }
+
+		//stage('docker-login') {
+			//REGISTRY_URL私有仓库地址，也可使用官方地址：docker.io
+			//sh "docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD} ${REGISTRY_URL}"
+		//}
+
+		//stage('docker-build') {
+			//to-do: the following sh scripts should be modified to
+			//sh "cp ./leadcenter-collect-service/target/leadcenter-collect-service-0.1-SNAPSHOT.jar ${APP_NAME}/docker/"
+
+			//dir ("${APP_NAME}/docker/") {
+			//	def image = docker.build("${REGISTRY_URL}/${APP_NAME}:${dateVersion}-v${BUILD_ID}")
+			//	image.push()
+			//}
+		//}
+	}
+}

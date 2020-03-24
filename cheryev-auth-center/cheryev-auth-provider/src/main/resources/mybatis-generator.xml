@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!--数据库链接地址账号密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/cheryev_sys" userId="root"
+			password="mysql">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+        <!--生成Model类存放位置 -->
+        <javaModelGenerator targetPackage="com.cheryev.crm.auth.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+		<!--生成映射文件存放位置 -->
+		<sqlMapGenerator targetPackage="com.cheryev.crm.auth.mapper" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!--生成Dao类存放位置 -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.cheryev.crm.auth.mapper" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- 表结构 -->
+		<!--<table tableName="base_brand" domainObjectName="BaseBrand" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="base_module_apis" domainObjectName="BaseModuleApis" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="base_module_menu" domainObjectName="BaseModuleMenu" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="base_module_operation" domainObjectName="BaseModuleOperation" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="base_module_resources" domainObjectName="BaseModuleResources" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="base_role" domainObjectName="BaseRole" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="base_role_module" domainObjectName="BaseRoleModule" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="base_system" domainObjectName="BaseSystem" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="base_user" domainObjectName="BaseUser" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="base_user_role" domainObjectName="BaseUserRole" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="base_user_system" domainObjectName="BaseUserSystem" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>-->
+		<table tableName="oauth_access_token" domainObjectName="OauthAccessToken" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="oauth_client_details" domainObjectName="OauthClientDetails" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="oauth_client_token" domainObjectName="OauthClientToken" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="oauth_code" domainObjectName="OauthCode" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table tableName="oauth_refresh_token" domainObjectName="OauthRefreshToken" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<!---->
+		<!--<table tableName="crm_report_info" domainObjectName="CrmReportInfo" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>-->
+		<!--
+		<table tableName="customer_dealer" domainObjectName="CustomerDealer" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<columnOverride column="customer_id" javaType="Integer"></columnOverride>
+			<columnOverride column="dealer_id" javaType="String"></columnOverride>
+			<columnOverride column="send_flag" javaType="Integer"></columnOverride>
+			<columnOverride column="create_time" javaType="java.util.Date"></columnOverride>
+		</table>
+
+		<table tableName="customer_history" domainObjectName="CustomerHistory" enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<columnOverride column="id" javaType="Integer"></columnOverride>
+			<columnOverride column="customer_id" javaType="Integer"></columnOverride>
+			<columnOverride column="content_before" javaType="String"></columnOverride>
+			<columnOverride column="content_before" javaType="String"></columnOverride>
+			<columnOverride column="create_time" javaType="java.util.Date"></columnOverride>
+			<columnOverride column="create_by" javaType="Integer"></columnOverride>
+			<columnOverride column="create_name" javaType="String"></columnOverride>
+		</table>
+		<table tableName="customer" domainObjectName="Customer" enableCountByExample="false"
+				  enableUpdateByExample="false"
+				  enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<columnOverride column="id" javaType="Integer"></columnOverride>
+			<columnOverride column="dms_code" javaType="String"></columnOverride>
+			<columnOverride column="last_name" javaType="String"></columnOverride>
+			<columnOverride column="first_name" javaType="String"></columnOverride>
+			<columnOverride column="wechat_openid" javaType="String"></columnOverride>
+			<columnOverride column="customer_status" javaType="Integer"></columnOverride>
+			<columnOverride column="gender" javaType="Integer"></columnOverride>
+			<columnOverride column="nation" javaType="Integer"></columnOverride>
+			<columnOverride column="person_birthdate" javaType="java.util.Date"></columnOverride>
+			<columnOverride column="head_image" javaType="String"></columnOverride>
+			<columnOverride column="credential_type" javaType="Integer"></columnOverride>
+			<columnOverride column="credential_number" javaType="String"></columnOverride>
+			<columnOverride column="driver_license_no" javaType="String"></columnOverride>
+			<columnOverride column="customer_level" javaType="Integer"></columnOverride>
+			<columnOverride column="phone" javaType="String"></columnOverride>
+			<columnOverride column="phone_two" javaType="String"></columnOverride>
+			<columnOverride column="person_email" javaType="String"></columnOverride>
+			<columnOverride column="province" javaType="Integer"></columnOverride>
+			<columnOverride column="province_name" javaType="String"></columnOverride>
+			<columnOverride column="city" javaType="Integer"></columnOverride>
+			<columnOverride column="city_name" javaType="String"></columnOverride>
+			<columnOverride column="subcity" javaType="Integer"></columnOverride>
+			<columnOverride column="subcity_name" javaType="String"></columnOverride>
+			<columnOverride column="address" javaType="String"></columnOverride>
+			<columnOverride column="age" javaType="Integer"></columnOverride>
+			<columnOverride column="owner" javaType="Integer"></columnOverride>
+			<columnOverride column="created_by" javaType="Integer"></columnOverride>
+			<columnOverride column="customer_car_date" javaType="java.util.Date"></columnOverride>
+			<columnOverride column="modify_by" javaType="Integer"></columnOverride>
+			<columnOverride column="modify_date" javaType="java.util.Date"></columnOverride>
+			<columnOverride column="send_modify_time" javaType="java.util.Date"></columnOverride>
+			<columnOverride column="description" javaType="String"></columnOverride>
+			<columnOverride column="person_donotcall" javaType="Integer"></columnOverride>
+			<columnOverride column="marital_status" javaType="Integer"></columnOverride>
+			<columnOverride column="hobby" javaType="String"></columnOverride>
+			<columnOverride column="education_level" javaType="Integer"></columnOverride>
+			<columnOverride column="revenue_level" javaType="Integer"></columnOverride>
+			<columnOverride column="household_registration" javaType="Integer"></columnOverride>
+			<columnOverride column="consumption_characteristics" javaType="String"></columnOverride>
+			<columnOverride column="purchae_frequency" javaType="Integer"></columnOverride>
+			<columnOverride column="interior_yearly_budget" javaType="String"></columnOverride>
+			<columnOverride column="driving_skill" javaType="Integer"></columnOverride>
+			<columnOverride column="automotive_expertise" javaType="Integer"></columnOverride>
+			<columnOverride column="communication_difficulty" javaType="Integer"></columnOverride>
+			<columnOverride column="treasure_car_level" javaType="Integer"></columnOverride>
+			<columnOverride column="vehicle_no" javaType="Integer"></columnOverride>
+			<columnOverride column="customer_characteristics_des" javaType="String"></columnOverride>
+			<columnOverride column="company_name" javaType="String"></columnOverride>
+			<columnOverride column="industry" javaType="String"></columnOverride>
+			<columnOverride column="person_title" javaType="String"></columnOverride>
+			<columnOverride column="is_special_customer" javaType="Integer"></columnOverride>
+			<columnOverride column="special_customer_type" javaType="Integer"></columnOverride>
+			<columnOverride column="special_care_comments" javaType="String"></columnOverride>
+			<columnOverride column="lead_frequency" javaType="Integer"></columnOverride>
+			<columnOverride column="owning_car_age" javaType="Integer"></columnOverride>
+			<columnOverride column="recomender" javaType="String"></columnOverride>
+			<columnOverride column="recomender_phone" javaType="String"></columnOverride>
+			<columnOverride column="if_married" javaType="Integer"></columnOverride>
+			<columnOverride column="occupation_phone" javaType="String"></columnOverride>
+			<columnOverride column="occupation_type" javaType="Integer"></columnOverride>
+			<columnOverride column="customer_type" javaType="Integer"></columnOverride>
+			<columnOverride column="contact" javaType="String"></columnOverride>
+			<columnOverride column="contact_phone" javaType="String"></columnOverride>
+		</table>
+	-->
+	</context>
+</generatorConfiguration>

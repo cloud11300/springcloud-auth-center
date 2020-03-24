@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.cheryev.crm.auth.config.WebSecurityConfig,\
+com.cheryev.crm.auth.config.AccessTokenUtils,\
+com.cheryev.crm.auth.config.RedisAuthConfiguration

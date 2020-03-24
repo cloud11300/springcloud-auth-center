@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheryev.crm.auth.mapper.BaseUserHandleMapper">
+  <resultMap id="BaseResultMap" type="com.cheryev.crm.auth.pojo.BaseUserVO">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="pass_word" jdbcType="VARCHAR" property="passWord" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="empno" jdbcType="VARCHAR" property="empno" />
+    <result column="depart" jdbcType="VARCHAR" property="depart" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="is_across_brand" jdbcType="VARCHAR" property="isAcrossBrand" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="user_source" jdbcType="INTEGER" property="userSource" />
+    <result column="is_monitor" jdbcType="TINYINT" property="isMonitor" />
+    <result column="ccc_account" jdbcType="TINYINT" property="cccAccount" />
+    <result column="is_web_chat" jdbcType="INTEGER" property="isWebChat" />
+    <result column="is_create" jdbcType="TINYINT" property="isCreate" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="mod_pwd_time" jdbcType="TIMESTAMP" property="modPwdTime" />
+    <result column="head_img" jdbcType="VARCHAR" property="headImg" />
+    <result column="bg" jdbcType="VARCHAR" property="bg" />
+    <result column="last_signin_time" jdbcType="TIMESTAMP" property="lastSigninTime" />
+    <result column="signin_num" jdbcType="INTEGER" property="signinNum" />
+    <result column="continu_signin" jdbcType="INTEGER" property="continuSignin" />
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="modify_pwd_apply_time" jdbcType="TIMESTAMP" property="modifyPwdApplyTime" />
+    <result column="device_type" jdbcType="VARCHAR" property="deviceType" />
+    <result column="device_token" jdbcType="VARCHAR" property="deviceToken" />
+    <result column="dealer_id" jdbcType="VARCHAR" property="dealerId" />
+    <result column="access_pre_time" jdbcType="TIMESTAMP" property="accessPreTime" />
+    <result column="access_suf_time" jdbcType="TIMESTAMP" property="accessSufTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="sso_user_cert" jdbcType="VARCHAR" property="ssoUserCert" />
+    <result column="wx_user_id" jdbcType="VARCHAR" property="wxUserId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, pass_word, user_name, nick_name, empno, depart, mobile, email, is_across_brand,
+    status, salt, user_source, is_monitor, ccc_account, is_web_chat, is_create, last_login_time,
+    mod_pwd_time, head_img, bg, last_signin_time, signin_num, continu_signin, uuid, modify_pwd_apply_time,
+    device_type, device_token, dealer_id, access_pre_time, access_suf_time, create_time,
+    create_user, update_time, update_user, user_type, sso_user_cert, wx_user_id
+  </sql>
+  <select id="selectUserByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from base_user
+    where status = 1
+    and user_name = #{userName,jdbcType=INTEGER}
+  </select>
+  <select id="getUserByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from base_user
+    where status = 1
+    and mobile = #{phone,jdbcType=INTEGER}
+  </select>
+
+</mapper>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheryev.crm.auth.mapper.BaseModuleResourcesHandleMapper">
+  <resultMap id="BaseResultMap" type="com.cheryev.crm.auth.pojo.BaseModuleResourcesVO">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MODULE_id" jdbcType="INTEGER" property="moduleId" />
+    <result column="MODULE_CODE" jdbcType="VARCHAR" property="moduleCode" />
+    <result column="MODULE_type" jdbcType="VARCHAR" property="moduleType" />
+    <result column="IS_OPERATING" jdbcType="INTEGER" property="isOperating" />
+    <result column="SORT" jdbcType="INTEGER" property="sort" />
+    <result column="SYSTEM_ID" jdbcType="VARCHAR" property="systemId" />
+    <result column="ACTIVE" jdbcType="INTEGER" property="active" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="PROJECT_NAME" jdbcType="TIMESTAMP" property="projectName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MODULE_id, MODULE_CODE, MODULE_type, IS_OPERATING, SORT, SYSTEM_ID, ACTIVE, CREATE_DATE,
+    UPDATE_DATE
+  </sql>
+  <select id="selectResourcesByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from base_module_resources
+    where active = 1
+    and module_type = 1
+    and id in (
+      select module_id from base_role_module where role_id in (
+        select role_id from base_user_role where user_id = #{userId,jdbcType=INTEGER}
+      )
+    )
+  </select>
+  <select id="selectResourcesByRoleId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select bmr.* ,bs.PROJECT_NAME
+    from base_module_resources bmr LEFT JOIN base_system bs ON bmr.SYSTEM_ID = bs.ID
+    where bmr.active = 1
+    and bmr.id in (
+      select module_id from base_role_module where role_id = #{roleId,jdbcType=INTEGER}
+    )
+  </select>
+
+  <resultMap id="BaseModuleMenuMap" type="com.cheryev.crm.auth.pojo.BaseModuleMenuVO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="brand_id" jdbcType="VARCHAR" property="brandId" />
+    <result column="text_local" jdbcType="VARCHAR" property="textLocal" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="position" jdbcType="INTEGER" property="position" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="auth_url" jdbcType="VARCHAR" property="authUrl" />
+    <result column="is_old" jdbcType="INTEGER" property="isOld" />
+    <result column="icon_class" jdbcType="VARCHAR" property="iconClass" />
+  </resultMap>
+  <sql id="Base_Column_menu">
+    id, name, brand_id, text_local, parent_id, status, position, url, sort, auth_url,
+    is_old, icon_class
+  </sql>
+  <select id="selectMenuByMenuId" parameterType="java.lang.Integer" resultMap="BaseModuleMenuMap">
+    select
+    <include refid="Base_Column_menu" />
+    from base_module_menu
+    where id = #{moduleId,jdbcType=INTEGER}
+  </select>
+
+  <resultMap id="BaseModuleOperationMap" type="com.cheryev.crm.auth.pojo.BaseModuleOperationVO">
+    <id column="oper_id" jdbcType="INTEGER" property="operId" />
+    <result column="oper_name" jdbcType="VARCHAR" property="operName" />
+    <result column="brand_id" jdbcType="VARCHAR" property="brandId" />
+    <result column="oper_desc" jdbcType="VARCHAR" property="operDesc" />
+    <result column="oper_menu" jdbcType="INTEGER" property="operMenu" />
+    <result column="oper_code" jdbcType="VARCHAR" property="operCode" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="oper_group_code" jdbcType="VARCHAR" property="operGroupCode" />
+    <result column="oper_group_name" jdbcType="VARCHAR" property="operGroupName" />
+    <result column="parent_group_code" jdbcType="VARCHAR" property="parentGroupCode" />
+  </resultMap>
+  <sql id="Base_Column_Operation">
+    oper_id, oper_name, brand_id, oper_desc, oper_menu, oper_code, status, oper_group_code,
+    oper_group_name, parent_group_code
+  </sql>
+  <select id="selectOperationByOperationId" parameterType="java.lang.Integer" resultMap="BaseModuleOperationMap">
+    select
+    <include refid="Base_Column_Operation" />
+    from base_module_operation
+    where oper_id = #{operationId,jdbcType=INTEGER}
+  </select>
+
+  <resultMap id="BaseModuleApisMap" type="com.cheryev.crm.auth.pojo.BaseModuleApisVO">
+    <id column="api_id" jdbcType="INTEGER" property="apiId" />
+    <result column="api_name" jdbcType="VARCHAR" property="apiName" />
+    <result column="brand_id" jdbcType="VARCHAR" property="brandId" />
+    <result column="api_desc" jdbcType="VARCHAR" property="apiDesc" />
+    <result column="api_menu" jdbcType="INTEGER" property="apiMenu" />
+    <result column="api_url" jdbcType="VARCHAR" property="apiUrl" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="api_group_code" jdbcType="VARCHAR" property="apiGroupCode" />
+    <result column="api_group_name" jdbcType="VARCHAR" property="apiGroupName" />
+    <result column="parent_group_code" jdbcType="VARCHAR" property="parentGroupCode" />
+  </resultMap>
+  <sql id="Base_Column_Apis">
+    api_id, api_name, brand_id, api_desc, api_menu, api_url, status, api_group_code,
+    api_group_name, parent_group_code
+  </sql>
+  <select id="selectApisByApiId" parameterType="java.lang.Integer" resultMap="BaseModuleApisMap">
+    select
+    <include refid="Base_Column_Apis" />
+    from base_module_apis
+    where api_id = #{apiId,jdbcType=INTEGER}
+  </select>
+
+
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheryev.crm.auth.mapper.BaseModuleApisMapper">
+  <resultMap id="BaseResultMap" type="com.cheryev.crm.auth.model.BaseModuleApis">
+    <id column="api_id" jdbcType="INTEGER" property="apiId" />
+    <result column="api_name" jdbcType="VARCHAR" property="apiName" />
+    <result column="brand_id" jdbcType="VARCHAR" property="brandId" />
+    <result column="api_desc" jdbcType="VARCHAR" property="apiDesc" />
+    <result column="api_menu" jdbcType="INTEGER" property="apiMenu" />
+    <result column="api_url" jdbcType="VARCHAR" property="apiUrl" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="api_group_code" jdbcType="VARCHAR" property="apiGroupCode" />
+    <result column="api_group_name" jdbcType="VARCHAR" property="apiGroupName" />
+    <result column="parent_group_code" jdbcType="VARCHAR" property="parentGroupCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    api_id, api_name, brand_id, api_desc, api_menu, api_url, status, api_group_code, 
+    api_group_name, parent_group_code
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_module_apis
+    where api_id = #{apiId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from base_module_apis
+    where api_id = #{apiId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cheryev.crm.auth.model.BaseModuleApis">
+    insert into base_module_apis (api_id, api_name, brand_id, 
+      api_desc, api_menu, api_url, 
+      status, api_group_code, api_group_name, 
+      parent_group_code)
+    values (#{apiId,jdbcType=INTEGER}, #{apiName,jdbcType=VARCHAR}, #{brandId,jdbcType=VARCHAR}, 
+      #{apiDesc,jdbcType=VARCHAR}, #{apiMenu,jdbcType=INTEGER}, #{apiUrl,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{apiGroupCode,jdbcType=VARCHAR}, #{apiGroupName,jdbcType=VARCHAR}, 
+      #{parentGroupCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cheryev.crm.auth.model.BaseModuleApis">
+    insert into base_module_apis
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apiId != null">
+        api_id,
+      </if>
+      <if test="apiName != null">
+        api_name,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="apiDesc != null">
+        api_desc,
+      </if>
+      <if test="apiMenu != null">
+        api_menu,
+      </if>
+      <if test="apiUrl != null">
+        api_url,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="apiGroupCode != null">
+        api_group_code,
+      </if>
+      <if test="apiGroupName != null">
+        api_group_name,
+      </if>
+      <if test="parentGroupCode != null">
+        parent_group_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="apiId != null">
+        #{apiId,jdbcType=INTEGER},
+      </if>
+      <if test="apiName != null">
+        #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiDesc != null">
+        #{apiDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="apiMenu != null">
+        #{apiMenu,jdbcType=INTEGER},
+      </if>
+      <if test="apiUrl != null">
+        #{apiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="apiGroupCode != null">
+        #{apiGroupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="apiGroupName != null">
+        #{apiGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentGroupCode != null">
+        #{parentGroupCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cheryev.crm.auth.model.BaseModuleApis">
+    update base_module_apis
+    <set>
+      <if test="apiName != null">
+        api_name = #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiDesc != null">
+        api_desc = #{apiDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="apiMenu != null">
+        api_menu = #{apiMenu,jdbcType=INTEGER},
+      </if>
+      <if test="apiUrl != null">
+        api_url = #{apiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="apiGroupCode != null">
+        api_group_code = #{apiGroupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="apiGroupName != null">
+        api_group_name = #{apiGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentGroupCode != null">
+        parent_group_code = #{parentGroupCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where api_id = #{apiId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cheryev.crm.auth.model.BaseModuleApis">
+    update base_module_apis
+    set api_name = #{apiName,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=VARCHAR},
+      api_desc = #{apiDesc,jdbcType=VARCHAR},
+      api_menu = #{apiMenu,jdbcType=INTEGER},
+      api_url = #{apiUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      api_group_code = #{apiGroupCode,jdbcType=VARCHAR},
+      api_group_name = #{apiGroupName,jdbcType=VARCHAR},
+      parent_group_code = #{parentGroupCode,jdbcType=VARCHAR}
+    where api_id = #{apiId,jdbcType=INTEGER}
+  </update>
+</mapper>
